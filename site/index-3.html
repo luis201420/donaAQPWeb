@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Voluntario</title>
+		<meta charset="utf-8">
+		<meta name = "format-detection" content = "telephone=no" />
+		<link rel="shortcut icon" href="http://badsoftweb.com/yo_dono_sangre_AQP/site/images/icono.ico">
+        <link rel="apple-touch-icon image_src" href="http://badsoftweb.com/yo_dono_sangre_AQP/site/images/icono.png">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-migrate-1.1.1.js"></script>
+		<script src="js/script.js"></script> 
+		<script src="js/jquery.ui.totop.js"></script>
+		<script src="js/superfish.js"></script>
+		<script src="js/jquery.equalheights.js"></script>
+		<script src="js/jquery.mobilemenu.js"></script>
+		<script src="js/jquery.easing.1.3.js"></script>
+		<script>
+
+			function llenarPreguntas(){
+		        $.ajax({
+		            type        : 'POST',
+		            url         : '../v1/obtenerPreguntas.php',
+		            dataType    : 'json',
+		            encode      : true
+		        })
+	            .done(function(data) {
+	      			var preguntas = data[0];
+	      			for(var i=1;i<=preguntas;i++){
+	      				$('#mostrador').append('<li><a onclick="mostrar('+data[i]["idPregunta"]+')" style="cursor: pointer;">'+data[i]["Titulo"]+'</a></li>');
+	      			}
+	            });
+			}
+
+			$(document).ready(function(){
+				llenarPreguntas();
+				$().UItoTop({ easingType: 'easeOutQuart' });
+			}) 
+			function mostrar(a){
+				var datos = {
+		            'codigo'              : a,
+		        };
+
+		        $.ajax({
+		            type        : 'POST',
+		            url         : '../v1/obtenerRespuesta.php',
+		            data        : datos,
+		            dataType    : 'json', 
+		            encode      : true
+		        })
+	            .done(function(data) {
+	      			$('#tituloRespuesta').text(data["Titulo"]);
+	      			$('#contenidoRespuesta').text(data["Respuesta"]);
+					$('#myModal').modal();
+	            });
+			}
+		</script>
+
+	</head>
+	<body class="" id="top">
+<!--==============================header=================================-->
+		<header>
+			<div class="clear"></div>
+			<div class="container_12">
+				<div class="grid_12">
+					<h1>
+						<a href="index.html">
+							<img src="images/logo.png" alt="Your Happy Family">
+						</a>
+					</h1>
+					<div class="menu_block">
+						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+							<ul class="sf-menu">
+								<li>
+									<a href="index.html">Inicio</a>
+									
+								</li>
+								<!--<li><a href="index-1.html">Videos </a></li>-->
+								<li><a href="index-2.html">Eventos</a></li>
+								<li class="current"><a href="index-3.html">Voluntario </a></li>
+								<li><a href="index-4.html">Contacto</a></li>
+							</ul>
+						</nav>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</header>
+
+    
+	<!-- ******************************************************************************************* -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	      <!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title" id="tituloRespuesta"></h4>
+				</div>
+				<div class="modal-body">
+				  <p id="contenidoRespuesta"></p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+	      
+	    </div>
+  	</div>
+
+  	<!-- ********************************************************************************************** -->
+
+		<div class="main">
+<!--==============================Content=================================-->
+			<div class="content"><div class="ic"></div>
+				<div class="container_12">
+					<div class="grid_8">
+						<h3>Donación de sangre</h3>
+						<img src="images/page4_img1.jpg" alt="" class="img_inner fleft">
+						<div class="extra_wrapper">
+							
+							<p class="p2">
+							Es un acto alturista solidario y desinteresado en el cual una persona dona una cantidad mínima de sangre, para salar la vida de otro ser humano.
+							Es importante por que puede salvar la vida de muchas personas. Por que nuestro cuerpo es el único organismo capaz de producir este tejido humano. Renueva sus glóbulos rojos.
+							Los que se benefician son aquellos pacientes que padecen de cáncer, leucemia, quemaduras, accidentes, heridas, anemias.
+							</p>
+						</div>
+						
+						<div class="style1">
+							<h3>Requisitos para ser donante de sangre</h3>
+							<img src="images/pagina 21.jpg" alt="" class="img_inner fleft">
+							<img src="images/donantes-compatibilidad.jpg" alt="" class="img_inner fleft">
+						<div class="extra_wrapper">
+							
+							
+						</div>
+						</div>
+					</div>
+					<div class="grid_4 ">
+						<h4>¿Quieres saber todo sobre donación de sangre?</h4>
+						<p>Aqui las preguntas mas frecuentes</p>
+						<ul class="list" id="mostrador">
+							
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+<!--==============================footer=================================-->
+			<footer>	
+				<div class="hor bg3"></div>
+				<div class="container_12">
+					<div class="grid_12 ">  
+						<div class="socials">
+							<a href="#"></a>
+							<a href="#"></a>
+							
+							<div class="clear"></div>
+						</div>
+						<div class="copy">
+							<strong>Yo Dono Sangre</strong>   &copy; <span id="copyright-year"></span> | <a href="#">Privacy Policy</a> <br>
+
+						</div>  
+					</div>
+				</div>  
+			</footer>
+		</div>
+	</body>
+</html>
