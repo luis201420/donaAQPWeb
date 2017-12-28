@@ -128,7 +128,7 @@
                     $("#Mensajes").append(
                         //'<div class="panel panel-default "><div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#preguntas" data-target="#question'+data[i]["id"]+'"><h4 class="panel-title"><a href="#" class="ing" onclick="mostrarComentarios('+data[i]["id"]+')"><b>'+data[i]["Nombres"]+" "+data[i]["Apellidos"]+"</b>: "+data[i]["Contenido"]+'</a><span><small style="float:right;">Fecha: '+data[i]["Fecha"]+'</small></span></h4></div><div id="question'+data[i]["id"]+'" class="panel-collapse collapse" style="height: 0px;"></div></div>'
                         '<div class="panel panel-warning">\n' +
-                        '        <div class="panel-heading" data-toggle="collapse" data-target="#'+data[i]["idMensaje"]+'"><h4><span class="glyphicon glyphicon-comment  " style="margin-right: 10px"></span><b>Re: </b>'+data[i]["Nombre"]+'<span class="label label-success" style="margin-left: 10px">fecha</span></h4></div>\n' +
+                        '        <div class="panel-heading" data-toggle="collapse" data-target="#'+data[i]["idMensaje"]+'"><h4><span class="glyphicon glyphicon-comment  " style="margin-right: 10px"></span><b>Re: </b>'+data[i]["Nombre"]+'<span class="label label-success" style="margin-left: 10px"></span></h4></div>\n' +
                         '        <div class="collapse panel-body" id="'+data[i]["idMensaje"]+'">' +
                         '           <h4><b> </b>'+data[i]["Mensaje"]+'</h4>\n' +
                         '           <h5>Contacto:<span class="label label-success" style="margin: 0 0 10px 10px">'+data[i]["Correo"]+'</span><span class="label label-success" style="margin: 0 0 10px 10px">'+data[i]["Telefono"]+'</span></h5>' +
